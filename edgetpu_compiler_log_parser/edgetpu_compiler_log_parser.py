@@ -58,7 +58,7 @@ class EdgeTPUCompilerLogParser:
         self.compile_infos["compiler_version"] = self.compiler_version
 
     def parse_compile_time(self):
-        self.compile_time = self.log_lines[3][32:-3]
+        self.compile_time = self.log_lines[3][32:-4] + "ms"
         self.compile_infos["compile_time"] = self.compile_time
 
     def find_starts(self):
