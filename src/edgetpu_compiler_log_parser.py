@@ -77,11 +77,11 @@ class EdgeTPUCompilerLogParser:
         compile_info = {}
         for line in self.log_lines[start : start + SINGLE_LOG_LINE_NUM]:
             if line.startswith("Input model: "):
-                compile_info["input_model"] = line[14:]
+                compile_info["input_model"] = line[13:]
             elif line.startswith("Input size: "):
                 compile_info["input_size"] = get_KiB_size(line)
             elif line.startswith("Output model: "):
-                compile_info["output_model"] = line[15:]
+                compile_info["output_model"] = line[14:]
             elif line.startswith("Output size: "):
                 compile_info["output_size"] = get_KiB_size(line)
             elif line.startswith(
