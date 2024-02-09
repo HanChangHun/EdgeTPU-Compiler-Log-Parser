@@ -32,12 +32,12 @@ class EdgeTPUCompilerLogParser:
         self.compile_infos = {
             "compiler_version": self.compiler_version,
             "compile_time": self.compile_time,
-            "compiled_info": [],
+            "compiled_infos": [],
         }
         self.parse_log()
 
-    def get_compile_infos(self):
-        return self.compile_infos
+    def get_compiled_infos(self):
+        return self.compile_infos["compiled_infos"]
 
     def parse_log(self):
         self.decode_log()
@@ -106,5 +106,5 @@ class EdgeTPUCompilerLogParser:
         return compile_info
 
     def add_compile_info(self, compile_info):
-        if compile_info not in self.compile_infos["compiled_info"]:
-            self.compile_infos["compiled_info"].append(compile_info)
+        if compile_info not in self.compile_infos["compiled_infos"]:
+            self.compile_infos["compiled_infos"].append(compile_info)
