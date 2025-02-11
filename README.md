@@ -2,6 +2,12 @@
 
 Parse the result of edgetpu_compiler!
 
+## Build (Optional)
+
+```sh
+python -m build
+```
+
 ## Install
 
 ```sh
@@ -35,7 +41,7 @@ if __name__ == "__main__":
 python3 tests/example.py
 ```
 
-```
+```json
 {'compile_time': '2037ms',
  'compiled_info': [{'input_model': 'tests/model/efficientnet-edgetpu-M_quant.tflite',
                     'input_size': 7639.04,

@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "edgetpu_compiler_log_parser"
+version = "0.1.1"
+description = "Parse EdgeTPU compiler log"
+authors = [{ name = "Changhun Han", email = "ehwjs1914@naver.com" }]
+readme = "README.md"
+keywords = ["EdgeTPU", "compiler", "log", "parser"]
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[tool.setuptools.packages.find]
+exclude = ["tests*"]
