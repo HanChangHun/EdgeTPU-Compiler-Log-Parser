@@ -33,8 +33,10 @@ class EdgeTPUCompilerLogParser:
             "compiler_version": self.compiler_version,
             "compile_time": self.compile_time,
             "compiled_infos": [],
+            "executable_space": 0,
         }
         self.parse_log()
+        self.calculate_executable_space()
 
     def get_compiled_infos(self):
         return self.compile_infos["compiled_infos"]
@@ -84,17 +86,11 @@ class EdgeTPUCompilerLogParser:
                 compile_info["output_model"] = line[14:]
             elif line.startswith("Output size: "):
                 compile_info["output_size"] = get_KiB_size(line)
-            elif line.startswith(
-                "On-chip memory used for caching model parameters: "
-            ):
+            elif line.startswith("On-chip memory used for caching model parameters: "):
                 compile_info["on_chip_memory_used"] = get_KiB_size(line)
-            elif line.startswith(
-                "On-chip memory remaining for caching model parameters: "
-            ):
+            elif line.startswith("On-chip memory remaining for caching model parameters: "):
                 compile_info["on_chip_memory_remaining"] = get_KiB_size(line)
-            elif line.startswith(
-                "Off-chip memory used for streaming uncached model parameters: "
-            ):
+            elif line.startswith("Off-chip memory used for streaming uncached model parameters: "):
                 compile_info["off_chip_memory_used"] = get_KiB_size(line)
             elif line.startswith("Number of Edge TPU subgraphs: "):
                 compile_info["num_of_edge_tpu_subgraphs"] = int(line[30:])
@@ -106,5 +102,18 @@ class EdgeTPUCompilerLogParser:
         return compile_info
 
     def add_compile_info(self, compile_info):
-        if compile_info not in self.compile_infos["compiled_infos"]:
-            self.compile_infos["compiled_infos"].append(compile_info)
+        self.compile_infos["compiled_infos"].append(compile_info)
+
+    def calculate_executable_space(self):
+        total_on_chip_memory_used = 0
+        last_on_chip_memory_remaining = 0
+        for i, compile_info in enumerate(self.compile_infos["compiled_infos"]):
+            total_on_chip_memory_used += compile_info["on_chip_memory_used"]
+            if i == len(self.compile_infos["compiled_infos"]) - 1:
+                last_on_chip_memory_remaining = compile_info["on_chip_memory_remaining"]
+        self.compile_infos["executable_space"] = round(
+            8192 - (last_on_chip_memory_remaining + total_on_chip_memory_used), 2
+        )
+
+    def get_executable_space(self):
+        return self.compile_infos["executable_space"]

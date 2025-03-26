@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "edgetpu_compiler_log_parser"
-version = "0.1.3"
+version = "0.1.6"
 description = "Parse EdgeTPU compiler log"
 authors = [{ name = "Changhun Han", email = "ehwjs1914@naver.com" }]
 readme = "README.md"
@@ -16,6 +16,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
 ]
 license = { file = "LICENSE" }
+dependencies = ["build>=1.1.1", "twine>=4.0.2"]
 
 [tool.setuptools.packages.find]
 exclude = ["tests*"]
