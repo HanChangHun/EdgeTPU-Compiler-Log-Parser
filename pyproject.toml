@@ -9,7 +9,7 @@ description = "Parse EdgeTPU compiler log"
 authors = [{ name = "Changhun Han", email = "ehwjs1914@naver.com" }]
 readme = "README.md"
 keywords = ["EdgeTPU", "compiler", "log", "parser"]
-requires-python = ">=3.7"
+requires-python = ">=3.7,<3.10"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Operating System :: OS Independent",
