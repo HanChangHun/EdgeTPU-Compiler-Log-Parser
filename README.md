@@ -14,6 +14,13 @@ python -m build
 python3 -m pip install -e .
 ```
 
+```sh
+python3 -m pip install --upgrade --user \
+    --index-url http://192.168.0.5:3141/chun/stable \
+    --trusted-host 192.168.0.5 \
+    edgetpu_compiler_log_parser
+```
+
 ## example
 
 ```python
