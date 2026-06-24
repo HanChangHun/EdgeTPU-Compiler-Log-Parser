@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "edgetpu_compiler_log_parser"
-version = "0.1.6"
+version = "0.1.7"
 description = "Parse EdgeTPU compiler log"
 authors = [{ name = "Changhun Han", email = "ehwjs1914@naver.com" }]
 readme = "README.md"
